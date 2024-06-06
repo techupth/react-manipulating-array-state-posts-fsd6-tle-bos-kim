@@ -2,27 +2,25 @@ import { useState } from "react";
 import PostObject from "./postObject";
 
 function Posts() {
-  const [like, setLike] = useState(0);
-  const [indexLike, setIndexLike] = useState({});
-  const addLike = (like, index) => {
-    const add = { ...indexLike };
+  const [like, setLike] = useState({});
+  const addLike = (oldLike, index) => {
+    const add = { ...like };
     if (!add[index]) {
-      add[index] = like;
+      add[index] = oldLike;
     }
     add[index]++;
-    setIndexLike(add);
     setLike(add);
   };
-  const minusLike = (like, index) => {
-    const minus = { ...indexLike };
+  const minusLike = (oldLike, index) => {
+    const minus = { ...like };
     if (!minus[index]) {
-      minus[index] = like;
+      minus[index] = oldLike;
     }
     minus[index]--;
     if (minus[index] <= 0) {
       minus[index] = "0";
     }
-    setIndexLike(minus);
+
     setLike(minus);
   };
   return (
